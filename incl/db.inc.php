@@ -97,6 +97,8 @@ class DatabaseConnection {
         "LOOKUP_USE_UPC_DATABASE" => "0",
         "LOOKUP_USE_OPEN_GTIN_DATABASE" => "0",
         "LOOKUP_USE_DISCOGS" => "0",
+        "LOOKUP_USE_CUSTOM_WEBHOOKS" => "0",
+        "LOOKUP_CUSTOM_WEBHOOKS_URLS" => null,
         "GS1_PARSING_ENABLED" => "1",
         "LOOKUP_USE_BBUDDY_SERVER" => "0",
         "LOOKUP_UPC_DATABASE_KEY" => null,
@@ -110,7 +112,8 @@ class DatabaseConnection {
         "BBUDDY_SERVER_ENABLED" => "0",
         "BBUDDY_SERVER_POPUPSHOWN" => "0",
         "BBUDDY_SERVER_NEXTSYNC" => "0",
-        "LOOKUP_ORDER" => "1,2,3,4,8,5,6,9,7");
+        "BBUDDY_SERVER_NEXTSYNC" => "0",
+        "LOOKUP_ORDER" => "1,2,3,4,8,5,6,9,7,10");
 
 
     const DB_INT_VALUES = array("REVERT_TIME");
