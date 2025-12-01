@@ -97,6 +97,7 @@ class DatabaseConnection {
         "LOOKUP_USE_UPC_DATABASE" => "0",
         "LOOKUP_USE_OPEN_GTIN_DATABASE" => "0",
         "LOOKUP_USE_DISCOGS" => "0",
+        "GS1_PARSING_ENABLED" => "1",
         "LOOKUP_USE_BBUDDY_SERVER" => "0",
         "LOOKUP_UPC_DATABASE_KEY" => null,
         "LOOKUP_OPENGTIN_KEY" => null,
@@ -432,8 +433,7 @@ class DatabaseConnection {
      * @return void
      */
     public function insertUnrecognizedBarcode(string $barcode, float $amount = 1, string $bestBeforeInDays = null, string $price = null, ?array $productname = null): void {
-        if ($bestBeforeInDays == null)
-            $bestBeforeInDays = "NULL";
+        $bestBeforeInDays = ($bestBeforeInDays === null) ? "NULL" : "'" . trim($bestBeforeInDays, "'") . "'";
 
         if ($productname == null) {
             $name     = "N/A";
@@ -455,8 +455,7 @@ class DatabaseConnection {
      * @param null|string $price
      */
     public function insertActionRequiredBarcode(string $barcode, ?string $bestBeforeInDays = null, ?string $price = null): void {
-        if ($bestBeforeInDays == null)
-            $bestBeforeInDays = "NULL";
+        $bestBeforeInDays = ($bestBeforeInDays === null) ? "NULL" : "'" . trim($bestBeforeInDays, "'") . "'";
 
         $this->db->exec("INSERT INTO Barcodes(barcode, name, amount, possibleMatch, requireWeight, bestBeforeInDays, price)
                              VALUES('$barcode', 'N/A', 1, 0, 1, $bestBeforeInDays, '$price')");
